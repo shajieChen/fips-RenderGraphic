@@ -1,0 +1,178 @@
+#
+# RenderGraphics for oryol
+# 
+
+if (NOT FIPS_IMPORT)
+    cmake_minimum_required(VERSION 3.0)
+	get_filename_component(FIPS_ROOT_DIR "../fips" ABSOLUTE)
+	include("${FIPS_ROOT_DIR}/cmake/fips.cmake")
+	fips_setup()
+    fips_project(fips-Render)
+endif()
+
+
+fips_begin_lib(RenderGraphic)
+	fips_vs_disable_warnings(4312)
+	fips_dir(RenderGraphics)
+	fips_files(
+        Actor.cpp                 
+		Actor.hpp                 
+		ActorKdTree.cpp           
+		ActorKdTree.hpp           
+		ActorTree.cpp             
+		ActorTree.hpp             
+		ActorTreeAbstract.cpp     
+		ActorTreeAbstract.hpp     
+		AdjacencyExtractor.hpp    
+		Applet.cpp                
+		Applet.hpp                
+		Array.hpp                 
+		BezierSurface.cpp         
+		BezierSurface.hpp         
+		Billboard.cpp             
+		Billboard.hpp             
+		BlitFramebuffer.hpp       
+		BufferObject.hpp          
+		CalibratedCamera.cpp      
+		CalibratedCamera.hpp      
+		Camera.cpp                
+		Camera.hpp                
+		Clear.cpp                 
+		Clear.hpp                 
+		ClipPlane.cpp             
+		ClipPlane.hpp             
+		CMakeLists.txt            
+		CopyTexSubImage.hpp       
+		CoreText.cpp              
+		CoreText.hpp              
+		DepthSortCallback.hpp     
+		DistanceLODEvaluator.hpp  
+		DoubleVertexRemover.cpp   
+		DoubleVertexRemover.hpp   
+		DrawArrays.hpp            
+		DrawCall.hpp              
+		DrawElements.hpp          
+		DrawPixels.cpp            
+		DrawPixels.hpp            
+		DrawRangeElements.hpp     
+		EdgeExtractor.cpp         
+		EdgeExtractor.hpp         
+		EdgeRenderer.cpp          
+		EdgeRenderer.hpp          
+		EdgeUpdateCallback.hpp    
+		Effect.cpp                
+		Effect.hpp                
+		EnableSet.hpp             
+		expandResourceDatabase.cpp
+		expandResourceDatabase.hpp
+		Extrusion.cpp             
+		Extrusion.hpp             
+		Extrusions.cpp            
+		Extrusions.hpp               
+		FlatManipulator.cpp       
+		FlatManipulator.hpp       
+		Font.cpp                  
+		Font.hpp                  
+		FontManager.cpp           
+		FontManager.hpp           
+		FramebufferObject.cpp     
+		FramebufferObject.hpp     
+		Frustum.hpp               
+		Geometry.cpp              
+		Geometry.hpp              
+		GeometryLoadCallback.hpp  
+		GeometryPrimitives.cpp    
+		GeometryPrimitives.hpp    
+		GhostCameraManipulator.cpp
+		GhostCameraManipulator.hpp
+		GLSL.cpp                  
+		GLSL.hpp                  
+		ImagePBO.hpp              
+		IndexIterator.hpp         
+		IVertexAttribSet.hpp      
+		Light.cpp                 
+		Light.hpp                 
+		link_config.hpp           
+		LODEvaluator.hpp          
+		MorphingCallback.cpp      
+		MorphingCallback.hpp      
+		MultiDrawElements.hpp     
+		NaryQuickMap.hpp          
+		OcclusionCullRenderer.cpp 
+		OcclusionCullRenderer.hpp 
+		OpenGL.cpp                
+		OpenGL.hpp                
+		OpenGLContext.cpp         
+		OpenGLContext.hpp         
+		PatchParameter.hpp        
+		pimpl.cpp                 
+		PixelLODEvaluator.cpp     
+		PixelLODEvaluator.hpp     
+		PolygonSimplifier.cpp     
+		PolygonSimplifier.hpp     
+		ProjViewTransfCallback.cpp
+		ProjViewTransfCallback.hpp
+		RayIntersector.cpp        
+		RayIntersector.hpp        
+		ReadPixels.hpp            
+		Renderable.hpp            
+		Renderer.cpp              
+		Renderer.hpp              
+		RendererAbstract.hpp      
+		RenderEventCallback.hpp   
+		Rendering.cpp             
+		Rendering.hpp             
+		RenderingAbstract.cpp     
+		RenderingAbstract.hpp     
+		RenderingTree.cpp         
+		RenderingTree.hpp         
+		RenderQueue.hpp           
+		RenderQueueSorter.hpp     
+		RenderState.hpp           
+		RenderStateSet.cpp        
+		RenderStateSet.hpp        
+		RenderToken.hpp           
+		SceneManager.cpp          
+		SceneManager.hpp          
+		SceneManagerActorKdTree.hpp
+		SceneManagerActorTree.hpp 
+		SceneManagerBVH.hpp       
+		SceneManagerPortals.cpp   
+		SceneManagerPortals.hpp   
+		Scissor.hpp               
+		Shader.cpp                
+		Shader.hpp                
+		ShaderNode.hpp            
+		StereoCamera.hpp          
+		Terrain.cpp               
+		Terrain.hpp               
+		Tessellator.cpp           
+		Tessellator.hpp           
+		Text.cpp                  
+		Text.hpp                  
+		Texture.cpp               
+		Texture.hpp               
+		TrackballManipulator.cpp  
+		TrackballManipulator.hpp  
+		TriangleIterator.hpp      
+		TriangleStripGenerator.cpp
+		TriangleStripGenerator.hpp
+		UIEventListener.hpp       
+		Uniform.hpp               
+		UniformSet.cpp            
+		UniformSet.hpp            
+		Viewport.cpp              
+		Viewport.hpp       
+    )
+fips_end_lib() 
+
+
+if (FIPS_CLANG)
+    set_target_properties(imgui PROPERTIES COMPILE_FLAGS "-Wno-unused-parameter -Wno-type-limits -Wno-missing-field-initializers")
+elseif(FIPS_GCC)
+    set_target_properties(imgui PROPERTIES COMPILE_FLAGS "-Wno-unused-but-set-variable -Wno-type-limits -Wno-missing-field-initializers")
+endif()
+
+if (NOT FIPS_IMPORT)
+    fips_finish()
+endif()
